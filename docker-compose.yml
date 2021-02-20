@@ -2,9 +2,7 @@ version: "3.7"
 
 services:
   web:
-    build:
-      context: .
-      dockerfile: ./flask.Dockerfile
+    build: ./app
     container_name: flask
     command: python main.py run -h 0.0.0.0
     volumes:
