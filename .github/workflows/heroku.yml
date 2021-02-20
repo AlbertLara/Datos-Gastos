@@ -1,9 +1,8 @@
 name: '' #set whatevername you want to your github job
-on: 
-  pull_request: 
+on:
+  pull_request:
     branches:
     - main
-  # set the events you would like to trigger this job
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,11 +11,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Build, Push and Deploy to Heroku #set the whatever name you want to this step
         id: heroku
-        uses: jctaveras/heroku-deploy@v1.0.0  # use the latest version of the action
+        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0  # use the latest version of the action
         with:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
           api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
-          app_name: ${{ secrets.HEROKU_APP_NAME }} # you aplication name
-          dockerfile_path: '/' # set the path to the folder wher the Dokerfile is located
-          options: '' # Docker Build Options
-          formation: '' # Docker Dyno Formation. By default is web
+          docker_compose_file: './docker-compose.yml' # set the path to the folder where the docker-compose file is located
+          heroku_apps: '[{"imagename":"flask","appname":"app1","apptype":"web"}]'
