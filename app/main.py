@@ -1,15 +1,10 @@
-from flask import Flask, render_template, Blueprint
+from flask import Flask
+from endpoints.home import blueprint as home_blueprint
 import os
 app = Flask(__name__,template_folder='web/templates',
             static_folder='web/static')
 
-blueprint = Blueprint("home",__name__, url_prefix='/')
-
-@blueprint.route('/')
-def index():
-    print("Hello")
-    return render_template('home/index.html',
-                           path='home',title='Welcome')
+app.register_blueprint(home_blueprint)
 
 if __name__=='__main__':
     port = int(os.getenv('PORT',5000))
