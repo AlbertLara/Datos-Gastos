@@ -4,8 +4,7 @@ build:
   config:
     PORT: 5000
 run:
-  web: bundle exec puma -C config/puma.rb
-  worker:
-      command:
-        - python main.py run -h 0.0.0.0
-      image: gastos_web
+  web:
+    command:
+      - python main.py run -h 0.0.0.0
+    image: gastos_web
