@@ -1,9 +1,7 @@
-from flask import Flask
-
-app = Flask(__name__,template_folder='web/templates',
-            static_folder='web/static')
-print("Hi")
+from project import create_app
+import os
+app = create_app()
 
 if __name__=='__main__':
-    app.run(host="localhost",port=8080,
-            debug=True)
+    port = int(os.getenv('PORT',5000))
+    app.run(host="0.0.0.0", debug=True, port=port)
