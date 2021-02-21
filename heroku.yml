@@ -5,7 +5,6 @@ setup:
 build:
   docker:
     web: app/Dockerfile
-    postgres: postgres/Dockerfile
   config:
     PORT: 5000
 run:
