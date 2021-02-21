@@ -1,6 +1,9 @@
 FROM python:3.8
 
 WORKDIR /app
+ARG PORT=$PORT
+
+ENV PORT $PORT
 
 EXPOSE 5000
 
