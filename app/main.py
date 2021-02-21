@@ -1,10 +1,6 @@
-from flask import Flask
-from .endpoints.home import blueprint as home_blueprint
-import os
-app = Flask(__name__,template_folder='web/templates',
-            static_folder='web/static')
+from project import create_app
 
-app.register_blueprint(home_blueprint)
+app = create_app()
 
 if __name__=='__main__':
     port = int(os.getenv('PORT',5000))
