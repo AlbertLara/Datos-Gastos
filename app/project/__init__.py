@@ -6,7 +6,6 @@ def create_app():
     app.config.from_pyfile("config.py")
     
     register_blueprint(app)
-    print(app.config)
     return app
 
 

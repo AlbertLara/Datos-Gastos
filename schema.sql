@@ -10,10 +10,10 @@ CREATE TABLE IF NOT EXISTS public."Cuentas" (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     inicial FLOAT NOT NULL
-)
+);
 
 CREATE TABLE IF NOT EXISTS public."Gastos" (
     id SERIAL PRIMARY KEY,
     concepto VARCHAR(255) NOT NULL,
     mes DATETIME NOT NULL
-)
+);

@@ -4,7 +4,6 @@ import os
 
 @blueprint.route('/')
 def index():
-    print("Hello 1")
-    print(os.environ)
+    
     return render_template('home/index.html',
                            path='home',title='Welcome')
