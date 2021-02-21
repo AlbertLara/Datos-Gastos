@@ -1,9 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Blueprint
 import os
 app = Flask(__name__,template_folder='web/templates',
             static_folder='web/static')
 
-@app.route('/')
+blueprint = Blueprint("home",__name__, url_prefix='/')
+
+@blueprint.route('/')
 def index():
     print("Hello")
     return render_template('home/index.html',
