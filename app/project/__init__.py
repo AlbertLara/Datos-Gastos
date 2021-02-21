@@ -3,6 +3,7 @@ from flask import Flask
 def create_app():
     app = Flask(__name__,template_folder='web/templates',
                 static_folder='web/static')
+    app.config.from_pyfile("config.py")
     register_blueprint(app)
     print(1)
     return app
