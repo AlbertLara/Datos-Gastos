@@ -4,8 +4,4 @@ build:
   config:
     PORT: 5000
 run:
-  web:
-    build: ./app
-    container_name: gastos_web
-    command:
-      - python main.py run -h 0.0.0.0
+  web: python main.py run -h 0.0.0.0
