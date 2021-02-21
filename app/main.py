@@ -1,9 +1,14 @@
-from flask import Flask
-from endpoints.home import blueprint as home_blueprint
+from flask import Flask, Blueprint, render_template
 import os
 app = Flask(__name__,template_folder='web/templates',
             static_folder='web/static')
+home_blueprint = Blueprint("home",__name__, url_prefix='/')
 
+@home_blueprint.route('/')
+def index():
+    print("Hello")
+    return render_template('home/index.html',
+                           path='home',title='Welcome')
 app.register_blueprint(home_blueprint)
 
 if __name__=='__main__':
