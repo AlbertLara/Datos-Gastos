@@ -8,5 +8,5 @@ def create_app():
 
 
 def register_blueprint(app:Flask):
-    from .endpoints.home import blueprint as home_blueprint
+    from app.project.endpoints.home import blueprint as home_blueprint
     app.register_blueprint(home_blueprint)
