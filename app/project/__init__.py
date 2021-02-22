@@ -1,7 +1,6 @@
 from flask import Flask
 from .models import db
 import os
-import heroku3
 
 def create_app():
     app = Flask(__name__,template_folder='web/templates',
