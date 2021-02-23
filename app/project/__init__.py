@@ -1,12 +1,13 @@
 from flask import Flask
 from .models import db
+from flask_bootstrap import Bootstrap
 import os
 
 def create_app():
     app = Flask(__name__,template_folder='web/templates',
                 static_folder='web/static')
     app.config.from_pyfile("config.py")
-    
+    Bootstrap(app)
     db.init_app(app)
     with app.app_context():
       db.create_all()

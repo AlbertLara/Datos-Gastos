@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_login import UserMixin
 db = SQLAlchemy()
 
 
@@ -17,3 +17,6 @@ class Cuentas(db.Model):
   id = db.Column(db.Integer, primary_key=True,nullable=False)
   nombre = db.Column(db.String(255),nullable=False)
   inicial = db.Column(db.Float,nullable=False)
+  
+class User(UserMixin, db.Model):
+  pass
