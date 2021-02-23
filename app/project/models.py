@@ -2,6 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+
+
 class Datos(db.Model):
   __tablename__="Datos"
   id = db.Column(db.Integer, primary_key=True,nullable=False)
