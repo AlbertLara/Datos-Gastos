@@ -23,7 +23,7 @@ class Cuentas(db.Model):
 class User(UserMixin, db.Model):
   __tablename__="User"
   id = db.Column(db.Integer, primary_key=True,nullable=False)
-  email= db.Column(db.String(255),nullable=False)
+  email= db.Column(db.String(255),nullable=False, unique=True)
   password_hash = db.Column(db.String(128))
   
   @property

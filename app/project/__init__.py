@@ -37,5 +37,5 @@ def create_user():
   email = os.getenv("USER_MAIL",None)
   password = os.getenv("USER_PWD",None)
   if email is not None and password is not None:
-    exists = User.query.filter_by(email=email).count()
+    exists = User.query.filter_by(email=email).count() == 1
     logging.getLogger("Users").info(exists)
