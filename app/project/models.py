@@ -1,5 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
+
 db = SQLAlchemy()
 
 
@@ -19,4 +21,14 @@ class Cuentas(db.Model):
   inicial = db.Column(db.Float,nullable=False)
   
 class User(UserMixin, db.Model):
-  pass
+  id = db.Column(db.Integer, primary_key=True,nullable=False)
+  email= db.Column(db.String(255),nullable=False)
+  password_hash = db.Column(db.String(128))
+  
+  @property
+  def password(self):
+    raise AttributeError('La contraseña no es un atributo legible')
+  
+  @password.setter
+  def password(self,password):
+    self.password_hash = generate_password_hash(password)
