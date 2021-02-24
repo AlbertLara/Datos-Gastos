@@ -6,5 +6,4 @@ import os
 @blueprint.route('/')
 @login_required
 def index():
-    return render_template('home/index.html',
-                           path='home',title='Welcome')
+    return render_template('home/index.html',path='home',title='Welcome')
