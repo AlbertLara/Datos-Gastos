@@ -21,6 +21,7 @@ class Cuentas(db.Model):
   inicial = db.Column(db.Float,nullable=False)
   
 class User(UserMixin, db.Model):
+  __tablename__="User"
   id = db.Column(db.Integer, primary_key=True,nullable=False)
   email= db.Column(db.String(255),nullable=False)
   password_hash = db.Column(db.String(128))
