@@ -2,6 +2,7 @@ from flask import Flask
 from .models import db, User
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+import logging
 import os
 
 def create_app():
@@ -10,6 +11,7 @@ def create_app():
     app.config.from_pyfile("config.py")
     Bootstrap(app)
     login_manager = LoginManager()
+    logging.basicConfig(level=logging.INFO)
     login_manager.init_app(app)
     db.init_app(app)
     
@@ -36,4 +38,4 @@ def create_user():
   password = os.getenv("USER_PWD",None)
   if email is not None and password is not None:
     exists = User.query.filter_by(email=email).count()
-    print(exists)
+    logging.getLogger("Users").info(exists)
