@@ -1,5 +1,6 @@
 from flask import Flask
 from .models import db
+from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 import os
 
@@ -8,9 +9,15 @@ def create_app():
                 static_folder='web/static')
     app.config.from_pyfile("config.py")
     Bootstrap(app)
+    login_manager = LoginManager()
+    login_manager.init_app(app)
     db.init_app(app)
+    
+    login_manager.login_view = "auth.login"
     with app.app_context():
       db.create_all()
+    
+    
     
     register_blueprint(app)
     return app
