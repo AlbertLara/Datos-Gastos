@@ -1,0 +1,28 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <div class="card-header">
+                <h1>Datos</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Concepto</th>
+              <th>Dia</th>
+              <th>Dinero</th>
+              <th>Key</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+</div>
+{% endblock %}

@@ -30,8 +30,10 @@ def create_app():
 def register_blueprint(app:Flask):
   from project.endpoints.home import blueprint as home_blueprint
   from project.endpoints.auth import blueprint as auth_blueprint
+  from project.endpoints.datos import blueprint as datos_blueprint
   app.register_blueprint(home_blueprint)
   app.register_blueprint(auth_blueprint)
+  app.register_blueprint(datos_blueprint)
     
 def create_user():
   email = os.getenv("USER_MAIL",None)
