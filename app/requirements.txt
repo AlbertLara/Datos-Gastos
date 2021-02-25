@@ -7,3 +7,5 @@ WTForms==2.3.3
 Flask-Login==0.5.0
 heroku3==4.2.3
 flask-bootstrap
+gspread
+oauth2client

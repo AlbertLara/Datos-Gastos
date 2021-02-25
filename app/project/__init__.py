@@ -2,6 +2,8 @@ from flask import Flask
 from .models import db, User
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 import logging
 import os
 
@@ -14,7 +16,8 @@ def create_app():
     logging.basicConfig(level=logging.INFO)
     login_manager.init_app(app)
     db.init_app(app)
-    
+    credential = ServiceAccountCredentials.from_json_keyfile_name("credentials.json",["https://spreadsheets.google.com/feeds","https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"])
+    client = gspread.authorize(credential)
     login_manager.login_view = "auth.login"
     with app.app_context():
       db.create_all()
