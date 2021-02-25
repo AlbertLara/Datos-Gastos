@@ -3,6 +3,6 @@ from wtforms import PasswordField, StringField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Email, EqualTo, Regexp
 
 class LoginForm(FlaskForm):
-    email = StringField('Correo',validators=[DataRequired()])
+    email = StringField('Correo',validators=[DataRequired(), Email()])
     password = PasswordField('Contraseña', validators=[DataRequired()])
     submit = SubmitField('Entrar')
