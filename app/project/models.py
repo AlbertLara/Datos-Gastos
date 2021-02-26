@@ -41,3 +41,11 @@ class User(UserMixin, db.Model):
     db.session.add(self)
     db.session.commit()
     
+    
+class Gastos(db.Model):
+  __tablename__="Gastos"
+  id = db.Column(db.Integer, primary_key=True,nullable=False)
+  concepto = db.Column(db.String(255),nullable=False)
+  mes = db.Column(db.DateTime,nullable=False)
+  importe = db.Column(db.Float,nullable=False)
+  num = db.Column(db.Integer,default=0)
