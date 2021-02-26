@@ -6,8 +6,9 @@ from .gspread_conn import client
 import logging
 import os
 
+
 def create_app():
-    app = Flask(__name__,template_folder='web/templates',
+    app = Flask(__name__, template_folder='web/templates',
                 static_folder='web/static')
     app.config.from_pyfile("config.py")
     Bootstrap(app)
@@ -17,42 +18,44 @@ def create_app():
     db.init_app(app)
     login_manager.login_view = "auth.login"
     with app.app_context():
-      db.create_all()
-      create_user()
-      syncronize()
+        db.create_all()
+        create_user()
+        syncronize()
+
     @login_manager.user_loader
     def load_user(user_id):
-      return User.query.get(int(user_id))
-    
+        return User.query.get(int(user_id))
+
     register_blueprint(app)
     return app
 
 
-def register_blueprint(app:Flask):
-  from project.endpoints.home import blueprint as home_blueprint
-  from project.endpoints.auth import blueprint as auth_blueprint
-  from project.endpoints.datos import blueprint as datos_blueprint
-  from project.endpoints.cuentas import blueprint as cuentas_blueprint
-  
-  
-  app.register_blueprint(home_blueprint)
-  app.register_blueprint(auth_blueprint)
-  app.register_blueprint(datos_blueprint)
-  app.register_blueprint(cuentas_blueprint)
+def register_blueprint(app: Flask):
+    from project.endpoints.home import blueprint as home_blueprint
+    from project.endpoints.auth import blueprint as auth_blueprint
+    from project.endpoints.datos import blueprint as datos_blueprint
+    from project.endpoints.cuentas import blueprint as cuentas_blueprint
+
+    app.register_blueprint(home_blueprint)
+    app.register_blueprint(auth_blueprint)
+    app.register_blueprint(datos_blueprint)
+    app.register_blueprint(cuentas_blueprint)
 
 
 def syncronize():
-  spr = client.open("Gastos")
-  
-  sheets = spr.worksheets()
-  for sheet in sheets:
-    pass
+    spr = client.open("Gastos")
+
+    sheets = spr.worksheets()
+    for sheet in sheets:
+        records = sheet.get_all_records()
+        print(records)
+
 
 def create_user():
-  email = os.getenv("USER_MAIL",None)
-  password = os.getenv("USER_PWD",None)
-  if email is not None and password is not None:
-    exists = User.query.filter_by(email=email).count() >0
-    if not exists:
-      user = User(email=email,password=password)
-      user.save_to_db()
+    email = os.getenv("USER_MAIL", None)
+    password = os.getenv("USER_PWD", None)
+    if email is not None and password is not None:
+        exists = User.query.filter_by(email=email).count() > 0
+        if not exists:
+            user = User(email=email, password=password)
+            user.save_to_db()
