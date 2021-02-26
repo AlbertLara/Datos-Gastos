@@ -7,4 +7,6 @@ spr = client.open("Gastos")
 
 sheets = spr.worksheets()
 
-print(sheets)
+for sheet in sheets:
+  print(sheet)
+  print(sheet.title)
