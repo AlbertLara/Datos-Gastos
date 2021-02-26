@@ -10,19 +10,22 @@
         </div>
     </div>
     <div class="row">
-      <div class="col text-center">
-        <table class="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Concepto</th>
-              <th>Dia</th>
-              <th>Dinero</th>
-              <th>Key</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
+        <div class="col text-center">
+            {% if data %}
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Dia</th>
+                    <th>Dinero</th>
+                    <th>Key</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

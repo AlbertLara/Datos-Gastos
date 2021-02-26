@@ -9,5 +9,8 @@ import os
 @login_required
 def index():
   data = Datos.query.all()
-  template = render_template('datos/index.html',title='Datos', data=data)
+  for row in data:
+    print(row.concepto)
+  form = CreateRecord()
+  template = render_template('datos/index.html',title='Datos', data=data, form=form)
   return template
