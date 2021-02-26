@@ -8,9 +8,6 @@ import os
 @blueprint.route("/",methods=["GET","POST"])
 @login_required
 def index():
-  form = DocumentToLoad()
-  if form.validate_on_submit():
-    d = form.document.data
-    print(d)
-  template = render_template('datos/index.html',title='Datos', form=form)
+  data = Datos.query.all()
+  template = render_template('datos/index.html',title='Datos', data=data)
   return template
