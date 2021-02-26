@@ -2,7 +2,6 @@ from flask import Flask
 from .models import db, User
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
-from .gspread_conn import client
 import logging
 import os
 
@@ -20,7 +19,6 @@ def create_app():
     with app.app_context():
         db.create_all()
         create_user()
-        syncronize()
 
     @login_manager.user_loader
     def load_user(user_id):
@@ -40,15 +38,6 @@ def register_blueprint(app: Flask):
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(datos_blueprint)
     app.register_blueprint(cuentas_blueprint)
-
-
-def syncronize():
-    spr = client.open("Gastos")
-
-    sheets = spr.worksheets()
-    for sheet in sheets:
-        records = sheet.get_all_records()
-        print(records)
 
 
 def create_user():
