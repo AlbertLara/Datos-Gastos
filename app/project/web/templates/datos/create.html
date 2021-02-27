@@ -1,0 +1,13 @@
+<!-- api/templates/auth/register.html -->
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block body %}
+<div class="content-section">
+  <div class="center">
+    <a class="btn btn-default" href="{{ url_for('datos.index') }}" role="button">Atras</a>
+    <br/>
+    {{ wtf.quick_form(form) }}
+  </div>
+</div>
+{% endblock %}

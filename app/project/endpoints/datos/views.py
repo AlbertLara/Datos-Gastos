@@ -10,5 +10,15 @@ from flask import redirect, render_template, url_for, request
 def index():
     data = Datos.query.all()
     form = CreateRecord()
+    if form.validate_on_submit():
+      return redirect(url_for("datos.create"))
     template = render_template('datos/index.html', title='Datos', form=form)
+    return template
+
+
+@blueprint.route("/create", methods=["GET", "POST"])
+@login_required
+def create():
+    form = NewRecord()
+    template = render_template("datos/create.html",title="Crear", form=form)
     return template
