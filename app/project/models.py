@@ -13,8 +13,9 @@ class Datos(db.Model):
     id_ingreso = db.Column(db.ForeignKey("Cuentas.id"), nullable=False)
     id_gasto = db.Column(db.ForeignKey("Cuentas.id"), nullable=False)
     label_id = db.Column(db.ForeignKey("Gastos.id"))
-    ingreso = db.relationship("Cuentas", primaryjoin=lambda: Datos.id_ingreso == Cuentas.id)
-    gasto = db.relationship("Cuentas", primaryjoin=lambda: Datos.id_gasto == Cuentas.id)
+    cuenta_ingreso = db.relationship("Cuentas", primaryjoin=lambda: Datos.id_ingreso == Cuentas.id)
+    cuenta_gasto = db.relationship("Cuentas", primaryjoin=lambda: Datos.id_gasto == Cuentas.id)
+    label = db.relationship("Gastos", primaryjoin=lambda: Gastos.id == Datos.label_id)
 
     @property
     def day(self):
@@ -50,6 +51,27 @@ class Cuentas(db.Model):
         total = round(self.diff + self.inicial, 2)
         return total
 
+
+class Gastos(db.Model):
+    __tablename__ = "Gastos"
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    concepto = db.Column(db.String(255), nullable=False)
+    mes = db.Column(db.DateTime, nullable=False)
+    importe = db.Column(db.Float, nullable=False)
+    num = db.Column(db.Integer, default=0)
+    datos_rel = db.relationship("Datos", primaryjoin=lambda: Gastos.id == Datos.label_id)
+
+    @property
+    def gasto_esperado(self):
+        value = self.num*self.importe
+        return value
+
+    @property
+    def month(self):
+        month = self.mes.strftime("%m/%Y")
+        return month
+
+
 class User(UserMixin, db.Model):
     __tablename__ = "User"
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -70,23 +92,3 @@ class User(UserMixin, db.Model):
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
-
-
-class Gastos(db.Model):
-    __tablename__ = "Gastos"
-    id = db.Column(db.Integer, primary_key=True, nullable=False)
-    concepto = db.Column(db.String(255), nullable=False)
-    mes = db.Column(db.DateTime, nullable=False)
-    importe = db.Column(db.Float, nullable=False)
-    num = db.Column(db.Integer, default=0)
-    datos_rel = db.relationship("Datos", primaryjoin=lambda: Gastos.id == Datos.label_id)
-
-    @property
-    def gasto_esperado(self):
-        value = self.num*self.importe
-        return value
-
-    @property
-    def month(self):
-        month = self.mes.strftime("%m/%Y")
-        return month
