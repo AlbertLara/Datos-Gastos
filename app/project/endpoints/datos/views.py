@@ -12,7 +12,7 @@ def index():
     form = CreateRecord()
     if form.validate_on_submit():
       return redirect(url_for("datos.create"))
-    template = render_template('datos/index.html', title='Datos', form=form)
+    template = render_template('datos/index.html', title='Datos', data=data, form=form)
     return template
 
 

@@ -8,30 +8,47 @@ class Datos(db.Model):
     __tablename__ = "Datos"
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     concepto = db.Column(db.String(255), nullable=False)
-    dia = db.Column(db.DateTime, nullable=False)
+    dia = db.Column(db.DateTime(""), nullable=False)
     dinero = db.Column(db.Float, nullable=False)
     id_ingreso = db.Column(db.ForeignKey("Cuentas.id"), nullable=False)
-    id_gasto= db.Column(db.ForeignKey("Cuentas.id"), nullable=False)
+    id_gasto = db.Column(db.ForeignKey("Cuentas.id"), nullable=False)
+    label_id = db.Column(db.ForeignKey("Gastos.id"))
+    ingreso = db.relationship("Cuentas", primaryjoin=lambda: Datos.id_ingreso == Cuentas.id)
+    gasto = db.relationship("Cuentas", primaryjoin=lambda: Datos.id_gasto == Cuentas.id)
 
     @property
     def day(self):
-        return self.dia.strftime('%Y-%m-%d')
+        return self.dia.strftime('%d/%m/%Y')
 
     @property
-    def ingreso(self):
-      id = int(str(self.idtransaction).split("-")[1])
-      nombre = ""
-      if id > 0:
-          cuenta = Cuentas.query.filter_by(id=id).first()
-          nombre = "" if cuenta is None else cuenta.nombre
-      return nombre
+    def mes(self):
+        return self.dia.strftime('%m/%Y')
 
 class Cuentas(db.Model):
     __tablename__ = "Cuentas"
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     nombre = db.Column(db.String(255), nullable=False)
     inicial = db.Column(db.Float, nullable=False)
+    gastos = db.relationship("Datos", primaryjoin=lambda: Cuentas.id == Datos.id_gasto)
+    ingresos = db.relationship("Datos", primaryjoin=lambda: Cuentas.id == Datos.id_ingreso)
 
+
+    @property
+    def all_gastos(self):
+        return round(sum([gasto.dinero for gasto in self.gastos]), 2)
+
+    @property
+    def all_ingresos(self):
+        return round(sum([gasto.dinero for gasto in self.ingresos]), 2)
+
+    @property
+    def diff(self):
+        return round(self.all_ingresos - self.all_gastos, 2)
+
+    @property
+    def total(self):
+        total = round(self.diff + self.inicial, 2)
+        return total
 
 class User(UserMixin, db.Model):
     __tablename__ = "User"
@@ -62,3 +79,14 @@ class Gastos(db.Model):
     mes = db.Column(db.DateTime, nullable=False)
     importe = db.Column(db.Float, nullable=False)
     num = db.Column(db.Integer, default=0)
+    datos_rel = db.relationship("Datos", primaryjoin=lambda: Gastos.id == Datos.label_id)
+
+    @property
+    def gasto_esperado(self):
+        value = self.num*self.importe
+        return value
+
+    @property
+    def month(self):
+        month = self.mes.strftime("%m/%Y")
+        return month

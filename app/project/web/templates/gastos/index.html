@@ -5,13 +5,10 @@
     <div class="row">
         <div class="col text-center">
             <div class="card-header">
-                <h1>Datos</h1>
+                <h1>Gastos</h1>
             </div>
         </div>
     </div>
-    <br><br>
-    {{ wtf.quick_form(form) }}
-    <br><br>
     <div class="row">
         <div class="col text-center">
             {% if data %}
@@ -19,22 +16,18 @@
                 <thead>
                 <tr>
                     <th>Concepto</th>
-                    <th>Dia</th>
-                    <th>Dinero</th>
-                    <th>Cuenta Ingreso</th>
-                    <th>Cuenta Gasto</th>
-                    <th>Label</th>
+                    <th>Mes</th>
+                    <th>Gasto Esperado</th>
+                    <th>Gasto Real</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for row in data %}
                 <tr>
                     <td>{{ row.concepto }}</td>
-                    <td>{{ row.day }}</td>
-                    <td>{{ row.dinero }}</td>
-                    <td>{{ row.ingreso.nombre }}</td>
-                    <td>{{ row.gasto.nombre }}</td>
-                    <td></td>
+                    <td>{{ row.month }}</td>
+                    <td>{{ row.gasto_esperado }}</td>
+                    <td>0</td>
                 </tr>
                 {% endfor %}
                 </tbody>
