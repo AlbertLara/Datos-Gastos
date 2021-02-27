@@ -19,7 +19,7 @@ def create_app():
     with app.app_context():
         db.create_all()
         create_user()
-
+    print(1)
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))

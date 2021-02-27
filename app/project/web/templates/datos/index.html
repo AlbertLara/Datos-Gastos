@@ -18,14 +18,24 @@
                     <th>Concepto</th>
                     <th>Dia</th>
                     <th>Dinero</th>
-                    <th>Key</th>
+                    <th>Id (transaccion)</th>
                 </tr>
                 </thead>
                 <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row.concepto }}</td>
+                    <td>{{ row.day }}</td>
+                    <td>{{ row.dinero }}</td>
+                    <td>{{ row.idtransaction }}</td>
+                </tr>
+                {% endfor %}
                 </tbody>
             </table>
             {% endif %}
         </div>
     </div>
+    <br>
+    {{ wtf.quick_form(form) }}
 </div>
 {% endblock %}
