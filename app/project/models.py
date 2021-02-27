@@ -10,7 +10,8 @@ class Datos(db.Model):
     concepto = db.Column(db.String(255), nullable=False)
     dia = db.Column(db.DateTime, nullable=False)
     dinero = db.Column(db.Float, nullable=False)
-    idtransaction = db.Column(db.String(3), nullable=False)
+    id_ingreso = db.Column(db.ForeignKey("Cuentas.id"), nullable=False)
+    id_gasto= db.Column(db.ForeignKey("Cuentas.id"), nullable=False)
 
     @property
     def day(self):
