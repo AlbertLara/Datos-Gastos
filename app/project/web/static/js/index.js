@@ -13,3 +13,7 @@
 
       return false;
     });
+    
+    $(document).ready(function() {
+  $("#example").DataTable();
+});
