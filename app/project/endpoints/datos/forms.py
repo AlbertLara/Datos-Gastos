@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, DateTimeField, DecimalField, Form
+from wtforms import StringField, SubmitField, DateTimeField, DecimalField, SelectField
 from wtforms.validators import DataRequired
 
 class CreateRecord(FlaskForm):
@@ -9,4 +9,11 @@ class NewRecord(FlaskForm):
     concepto = StringField("Concepto", validators=[DataRequired()])
     dia = DateTimeField("Dia", validators=[DataRequired()])
     dinero = DecimalField("Dinero", validators=[DataRequired()])
+    submit = SubmitField("Añadir")
+
+class NewGasto(FlaskForm):
+    concepto = StringField("Concepto", validators=[DataRequired()])
+    dia = DateTimeField("Dia", validators=[DataRequired()])
+    dinero = DecimalField("Dinero", validators=[DataRequired()])
+    cuentas = SelectField("Origen")
     submit = SubmitField("Añadir")

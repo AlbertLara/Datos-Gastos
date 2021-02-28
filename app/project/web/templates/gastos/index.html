@@ -9,9 +9,31 @@
             </div>
         </div>
     </div>
+    <br><br>
     <div class="row">
         <div class="col text-center">
-
+            {% if data %}
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Mes</th>
+                    <th>Gasto Esperado</th>
+                    <th>Gasto Real</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row.concepto }}</td>
+                    <td>{{ row.month }}</td>
+                    <td>{{ row.gasto_esperado }}</td>
+                    <td>{{ row.gasto_real }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -6,11 +6,6 @@ from flask import render_template
 @blueprint.route("/", methods=["GET", "POST"])
 @login_required
 def index():
-    gastos = Gastos.query.all()
-    datos = {}
-    for gasto in gastos:
-        month = gasto.month
-
-    data = []
+    data = Gastos.query.all()
     template = render_template('gastos/index.html', title='Gastos', data=data)
     return template

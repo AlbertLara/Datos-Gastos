@@ -6,8 +6,8 @@
 <div class="content-section">
   <div class="center">
     <a class="btn btn-default" href="{{ url_for('datos.index') }}" role="button">Atras</a>
-    <br/>
-    {{ wtf.quick_form(form) }}
+    <br/><br>
+    {{ wtf.quick_form(form,form_type='inline' ) }}
   </div>
 </div>
 {% endblock %}

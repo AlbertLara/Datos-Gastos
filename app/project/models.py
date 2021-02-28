@@ -58,6 +58,7 @@ class Gastos(db.Model):
     gasto_esperado =db.Column(db.Float, nullable=False)
     gasto_real = db.Column(db.Float, default=0)
 
+
     @property
     def month(self):
         month = self.mes.strftime("%m/%Y")
