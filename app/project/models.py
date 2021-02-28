@@ -71,6 +71,11 @@ class Gastos(db.Model):
         month = self.mes.strftime("%m/%Y")
         return month
 
+    @property
+    def gasto_real(self):
+        gasto = round(sum([row.dinero for row in self.datos_rel]), 2)
+        return gasto
+
 
 class User(UserMixin, db.Model):
     __tablename__ = "User"

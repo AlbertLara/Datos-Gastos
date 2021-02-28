@@ -2,7 +2,7 @@ from . import blueprint
 from .forms import LoginForm
 from ...models import User
 from flask_login import login_required, login_user, logout_user, current_user
-from flask import redirect, render_template, url_for, request
+from flask import redirect, render_template, url_for, flash
 import os
 
 @blueprint.route('/login', methods=['GET','POST'])
@@ -15,3 +15,12 @@ def login():
       return redirect(url_for("home.index"))
   template = render_template('auth/login.html', form=form,title='Login')
   return template
+
+
+@blueprint.route('/logout')
+@login_required
+def logout():
+  logout_user()
+  flash('You have successfully been logged out.')
+  # redirect to the login page
+  return redirect(url_for('auth.login'))
