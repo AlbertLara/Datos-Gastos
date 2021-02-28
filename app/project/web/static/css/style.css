@@ -144,31 +144,3 @@ p.copyright {
   margin-left: .1rem;
   margin-right: .1rem;
 }
-
-.dataTables_length,
-.dataTables_wrapper {
-  font-size: 1.6rem;
-  select,
-  input {
-    background-color: #f9f9f9;
-    border: 1px solid #999;
-    border-radius: 4px;
-    height: 3rem;
-    line-height: 2;
-    font-size: 1.8rem;
-    color: #333;
-  }
-
-  .dataTables_length,
-  .dataTables_filter {
-    margin-top: 30px;
-    margin-right: 20px;
-    margin-bottom: 10px;
-    display: inline-flex;
-  }
-}
-
-// paginate
-
-.paginate_button {
-  min-width: 4rem;
