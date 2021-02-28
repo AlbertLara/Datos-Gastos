@@ -14,6 +14,7 @@
       return false;
     });
     
-  $("#example").DataTable();
 
-
+$(document).ready(function() {
+  $('#example').DataTable();
+});
