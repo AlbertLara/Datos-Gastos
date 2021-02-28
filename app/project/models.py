@@ -12,10 +12,8 @@ class Datos(db.Model):
     dinero = db.Column(db.Float, nullable=False)
     id_ingreso = db.Column(db.ForeignKey("Cuentas.id"), nullable=False)
     id_gasto = db.Column(db.ForeignKey("Cuentas.id"), nullable=False)
-    label_id = db.Column(db.ForeignKey("Gastos.id"))
     cuenta_ingreso = db.relationship("Cuentas", primaryjoin=lambda: Datos.id_ingreso == Cuentas.id)
     cuenta_gasto = db.relationship("Cuentas", primaryjoin=lambda: Datos.id_gasto == Cuentas.id)
-    label = db.relationship("Gastos", primaryjoin=lambda: Gastos.id == Datos.label_id)
 
     @property
     def day(self):
@@ -57,24 +55,13 @@ class Gastos(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     concepto = db.Column(db.String(255), nullable=False)
     mes = db.Column(db.DateTime, nullable=False)
-    importe = db.Column(db.Float, nullable=False)
-    num = db.Column(db.Integer, default=0)
-    datos_rel = db.relationship("Datos", primaryjoin=lambda: Gastos.id == Datos.label_id)
-
-    @property
-    def gasto_esperado(self):
-        value = self.num*self.importe
-        return value
+    gasto_esperado =db.Column(db.Float, nullable=False)
+    gasto_real = db.Column(db.Float, default=0)
 
     @property
     def month(self):
         month = self.mes.strftime("%m/%Y")
         return month
-
-    @property
-    def gasto_real(self):
-        gasto = round(sum([row.dinero for row in self.datos_rel]), 2)
-        return gasto
 
 
 class User(UserMixin, db.Model):
