@@ -22,6 +22,10 @@ class Datos(db.Model):
     @property
     def mes(self):
         return self.dia.strftime('%m/%Y')
+        
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
 
 class Cuentas(db.Model):
     __tablename__ = "Cuentas"
