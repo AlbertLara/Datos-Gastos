@@ -19,6 +19,7 @@ def index():
 @login_required
 def create():
     form = NewRecord()
+    print("Hey")
     if form.validate_on_submit():
       print(1)
     ids = get_cuentas_ids()
