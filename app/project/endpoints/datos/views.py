@@ -19,13 +19,10 @@ def index():
 @login_required
 def create():
     form = NewRecord()
+    if form.validate_on_submit():
+      print(1)
     ids = get_cuentas_ids()
     choices = [(id, id) for id in ids]
     form.idtransaction.choices = choices
-    if form.validate_on_submit():
-      idtransaction = form.idtransaction.data
-      print(idtransaction)
-      print(1)
-      return redirect(url_for("datos.create"))
     template = render_template("datos/create.html",title="Crear", form=form)
     return template
