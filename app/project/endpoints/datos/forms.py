@@ -9,11 +9,5 @@ class NewRecord(FlaskForm):
     concepto = StringField("Concepto", validators=[DataRequired()])
     dia = DateTimeField("Dia", validators=[DataRequired()])
     dinero = DecimalField("Dinero", validators=[DataRequired()])
-    submit = SubmitField("Añadir")
-
-class NewGasto(FlaskForm):
-    concepto = StringField("Concepto", validators=[DataRequired()])
-    dia = DateTimeField("Dia", validators=[DataRequired()])
-    dinero = DecimalField("Dinero", validators=[DataRequired()])
-    cuentas = SelectField("Origen")
+    tipo = SelectField("Tipo", choices=[("transferencia","Transferencia"), ("ingreso","Ingreso"), ("gasto","Gasto")], validators=[DataRequired()])
     submit = SubmitField("Añadir")
