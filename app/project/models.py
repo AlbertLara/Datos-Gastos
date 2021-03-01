@@ -85,3 +85,15 @@ class User(UserMixin, db.Model):
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
+        
+        
+def get_cuentas_ids():
+  cuentas = Cuentas.query.all()
+  max_id = max([cuenta.id for cuenta in cuentas])+1
+  ids = []
+  for i in range(0,max_id):
+    for j in range(0,max_id):
+      if i != j:
+        id = f"{i}-{j}"
+        ids.append(id)
+  return ids

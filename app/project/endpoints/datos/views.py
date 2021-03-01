@@ -19,15 +19,8 @@ def index():
 @login_required
 def create():
     form = NewRecord()
-    cuentas = Cuentas.query.all()
-    max_id = max([cuenta.id for cuenta in cuentas])+1
-    choices = []
-    for i in range(0,max_id):
-      for j in range(0, max_id):
-        if i != j:
-          id = f"{i}-{j}"
-          choice = (id, id)
-          choices.append(choice)
+    ids = get_cuentas_ids()
+    choices = [(id, id) for id in ids]
     form.idtransaction.choices = choices
     template = render_template("datos/create.html",title="Crear", form=form)
     return template
