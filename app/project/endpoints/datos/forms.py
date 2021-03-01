@@ -9,5 +9,7 @@ class NewRecord(FlaskForm):
     concepto = StringField("Concepto", validators=[DataRequired()])
     dia = DateTimeField("Dia", validators=[DataRequired()])
     dinero = DecimalField("Dinero", validators=[DataRequired()])
-    idtransaction = SelectField("Id Transaccion")
+    tipo = SelectField("Tipo",choices=[("transact","Transaccion"), ("ingreso","Ingreso"), ("gasto","Gasto")])
+    origen = SelectField("Origen", coerce=int)
+    destino = SelectField("Destino", coerce=int)
     submit = SubmitField("Añadir")
