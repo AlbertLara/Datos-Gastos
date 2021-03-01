@@ -26,7 +26,8 @@ def create():
       for j in range(0, max_id):
         if i != j:
           id = f"{i}-{j}"
-          print(id)
+          choice = (id, id)
+          choices.append(choice)
     form.idtransaction.choices = choices
     template = render_template("datos/create.html",title="Crear", form=form)
     return template
