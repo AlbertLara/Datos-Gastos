@@ -1,6 +1,7 @@
 from . import blueprint
 from ...models import *
 from .forms import *
+from sqlalchemy import func
 from flask_login import login_required, login_user, logout_user, current_user
 from flask import redirect, render_template, url_for, request
 
