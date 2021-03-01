@@ -22,5 +22,8 @@ def create():
     ids = get_cuentas_ids()
     choices = [(id, id) for id in ids]
     form.idtransaction.choices = choices
+    if form.validate_on_submit():
+      idtransaction = form.idtransaction.data
+      print(idtransaction)
     template = render_template("datos/create.html",title="Crear", form=form)
     return template
