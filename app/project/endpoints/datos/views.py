@@ -19,5 +19,8 @@ def index():
 @login_required
 def create():
     form = NewRecord()
+    cuentas = Cuentas.query(func.max(Cuentas.id)).first()
+    print(cuentas)
+    form.idtransaction.choices = []
     template = render_template("datos/create.html",title="Crear", form=form)
     return template
