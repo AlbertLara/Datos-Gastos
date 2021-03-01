@@ -1,7 +1,6 @@
 from . import blueprint
 from ...models import *
 from .forms import *
-from sqlalchemy import func
 from flask_login import login_required, login_user, logout_user, current_user
 from flask import redirect, render_template, url_for, request
 
@@ -20,8 +19,9 @@ def index():
 @login_required
 def create():
     form = NewRecord()
-    cuentas = Cuentas.query(func.max(Cuentas.id)).first()
-    print(cuentas)
+    cuentas = Cuentas.query.all()
+    max_id = max([cuenta.id for cuenta in cuentas])
+    print(max_id)
     form.idtransaction.choices = []
     template = render_template("datos/create.html",title="Crear", form=form)
     return template
