@@ -21,6 +21,7 @@ def create():
     form = NewRecord()
     if form.validate_on_submit():
         print(1)
+        return redirect(url_for("datos.index"))
     ids = get_cuentas_ids()
     choices = [(id, id) for id in ids]
     form.idtransaction.choices = choices
