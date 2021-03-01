@@ -25,5 +25,7 @@ def create():
     if form.validate_on_submit():
       idtransaction = form.idtransaction.data
       print(idtransaction)
+      print(1)
+      return redirect(url_for("datos.create"))
     template = render_template("datos/create.html",title="Crear", form=form)
     return template
