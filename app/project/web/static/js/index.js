@@ -14,6 +14,6 @@
       return false;
     });
     
-$("#tipo").on('change',function(){
+$("#tipo").change(function(){
   $("#concepto").value = this.value
 });
