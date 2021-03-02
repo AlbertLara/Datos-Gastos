@@ -6,7 +6,7 @@ class CreateRecord(FlaskForm):
     submit = SubmitField("Añadir registro")
 
 class NewRecord(FlaskForm):
-    concepto = StringField("Concepto", validators=[DataRequired()])
+    concepto = StringField("Concepto", validators=[DataRequired()], id="concepto")
     dia = DateTimeField("Dia", validators=[DataRequired()])
     dinero = DecimalField("Dinero", validators=[DataRequired()])
     tipo = SelectField("Tipo",choices=[("transact","Transaccion"), ("ingreso","Ingreso"), ("gasto","Gasto")],id="tipo")

@@ -13,3 +13,8 @@
 
       return false;
     });
+    
+$("#tipo").on("change", function(){
+  var tipo = this.value
+  document.getElementById("concepto").innerHTML = tipo
+})
