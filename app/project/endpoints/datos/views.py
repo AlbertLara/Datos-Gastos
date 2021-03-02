@@ -20,7 +20,7 @@ def index():
 def create():
     form = NewRecord()
     ids = get_cuentas_ids()
-    choices [(id, id) for id in ids]
+    choices =[(id, id) for id in ids]
     form.idtransaction.choices = choices
     if form.validate_on_submit():
         print(1)
