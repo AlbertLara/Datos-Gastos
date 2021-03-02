@@ -19,6 +19,10 @@ def index():
 @login_required
 def create():
     form = NewRecord()
+    cuentas = Cuentas.query.all()
+    choices = [(cuenta.id, cuenta.nombre) for cuenta in cuentas]
+    form.origen.choices = choices
+    form.destino.choices = choices
     if form.validate_on_submit():
         print(1)
         return redirect(url_for("datos.index"))
