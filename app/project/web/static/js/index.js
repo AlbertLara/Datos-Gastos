@@ -15,6 +15,6 @@
     });
     
 $("#tipo").change(function(){
-  $("#concepto").txt = this.value
+  alert(this.value)
   
 });
