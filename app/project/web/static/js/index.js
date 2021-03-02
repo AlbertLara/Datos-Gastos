@@ -16,5 +16,5 @@
     
 $("#tipo").on('change',function(){
   console.log(this.value)
-  alert(this.value)
+  $("#concepto").value = this.value
 });
