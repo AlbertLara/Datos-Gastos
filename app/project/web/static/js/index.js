@@ -15,5 +15,5 @@
     });
     
 $("#tipo").change(function(){
-  $("#concepto").value = this.value
+  $("#concepto").txt = this.value
 });
