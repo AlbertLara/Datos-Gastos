@@ -14,6 +14,10 @@
       return false;
     });
     
+$(document).ready(function(){
+  
 $("#tipo").change(function(){
   $("#concepto").val(this.value)
 });
+
+})
