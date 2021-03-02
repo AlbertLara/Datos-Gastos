@@ -19,7 +19,7 @@ def index():
 @login_required
 def create():
     form = NewRecord()
-    cuentas = Cuentas.query.all()
+    cuentas = Cuentas.query.order_by(Cuentas.id.asc()).all()
     choices = [(cuenta.id, cuenta.nombre) for cuenta in cuentas]
     form.origen.choices = choices
     form.destino.choices = choices
