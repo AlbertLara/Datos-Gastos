@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, DateTimeField, DecimalField, SelectField
+from wtforms import *
 from wtforms.validators import DataRequired
 
 class CreateRecord(FlaskForm):
