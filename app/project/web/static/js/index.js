@@ -14,7 +14,7 @@
       return false;
     });
     
-$("#tipo").change(function(){
+$("#tipo").on('change',function(){
+  console.log(this.value)
   alert(this.value)
-  
 });
