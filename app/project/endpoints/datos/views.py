@@ -7,7 +7,7 @@ from flask import redirect, render_template, url_for, request
 @blueprint.route("/", methods=["GET", "POST"])
 @login_required
 def index():
-    data = Datos.query.all()
+    data = Datos.query.order_by(Datos.id.desc()).all()
     form = CreateRecord()
     if form.validate_on_submit():
       return redirect(url_for("datos.create"))
