@@ -23,7 +23,11 @@ def create():
     choices =[(id, id) for id in ids]
     form.idtransaction.choices = choices
     if form.validate_on_submit():
-        print(1)
+        concepto = form.concepto.data
+        day = form.dia.data
+        dinero = form.dinero.data
+        print(day)
+        print(concepto)
         return redirect(url_for("datos.index"))
     template = render_template("datos/create.html",title="Crear", form=form)
     return template
