@@ -26,6 +26,8 @@ def create():
         concepto = form.concepto.data
         day = form.dia.data
         dinero = form.dinero.data
+        idtransaction = form.idtransaction.data
+        print(idtransaction)
         print(day)
         print(concepto)
         return redirect(url_for("datos.index"))
