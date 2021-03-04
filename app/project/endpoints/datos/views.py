@@ -26,7 +26,9 @@ def create():
         concepto = form.concepto.data
         day = form.dia.data
         dinero = form.dinero.data
-        idtransaction = form.idtransaction.data
+        idtransaction = form.idtransaction.data.split("-")
+        id_ingreso = idtransaction[1]
+        id_gasto = idtransaction[0]
         print(idtransaction)
         print(day)
         print(concepto)
